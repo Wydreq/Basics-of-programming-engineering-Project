@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<script src="http://kronos.tu.kielce.pl/uml/vendor/base64.js"></script>
+	<script src="http://kronos.tu.kielce.pl/uml/vendor/rawdeflate.js"></script>
+	<script src="http://kronos.tu.kielce.pl/uml/vendor/prism.js" type="text/javascript"></script>
+	<script src="http://kronos.tu.kielce.pl/uml/js/plantuml-drawer.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="http://kronos.tu.kielce.pl/uml/vendor/prism.css" data-noprefix />
+	<link rel="stylesheet" href="http://kronos.tu.kielce.pl/uml/css/raport.css" data-noprefix />
+		
+	</style>
+</head>
+<body>
+
+	<h1>Inżynieria Programowania</h1>
+	<h2>Temat projektu - System zarządzania siłownią</h2>
+
+	<h3>Autorzy</h3>
+
+	<ul>
+		<li>Mateusz Gębka</li>
+        <li>Karol Górnicki</li>
+        <li>Bartłomiej Wydrzycki</li>
+        <li>Jakub Wojnowski</li>
+	</ul>
+
+	<article id="description-polish">
+		<h4>Opis systemu w języku polskim</h4>
+		<p class="guidelines">System zarządzania siłownią pozwalający pracownikom na obsługę klientów, zgłoszenie awarii sprzętu oraz organizacje zajęć.</p>
+        <p class="guidelines">Menadżer zarządza pracownikami oraz sprzętem na siłowni</p>
+        <p class="guidelines">Klient ma możliwość kupna karnetu oraz zapisu na zajęcia</p>
+	</article>
+
+	
+	<article id="description-english">
+		<h4>System description in english</h4>
+		<p class="guidelines">Managisng system of a gym which allows employees to: report hazardous issues with equimpent, Manage customers and helps with organising group and individual classes for the customers.</p>
+        <p class="guidelines">Menager is managing state and numers of gym's equipment and overheads employees and their's actions</p>
+        <p class="guidelines">Client can purchase a gym's subscription and enroll into gym classes </p>
+	</article>
+	
+	<article id="dictionary-polish">
+		<h4>Słownik pojęć</h4>
+		<ul>
+			<li>
+				<strong>Klient</strong>
+				każda osoba która korzysta z usług siłowni
+			</li>
+			<li>
+				<strong>Pracownik</strong>
+                osoba pracująca w siłowni
+			</li>
+            <li>
+				<strong>Menadżer</strong>
+				osoba zarządzajaca sprawami siłowni
+			</li>
+		</ul>
+	</article>
+
+	<article id="dictionary-english">
+		<h4>Dictionary</h4>
+		<p class="guidelines">List of used terms with description</p>
+        <ul>
+			<li>
+				<strong>Client</strong>
+				Every person who used gym's services
+			</li>
+			<li>
+				<strong>employee</strong>
+                every Person whom is a gym's Employee
+			</li>
+            <li>
+				<strong>Manager</strong>
+				Person who oversees every gym aspect
+			</li>
+		</ul>
+	</article>
+	
+	<article id="user-stories-polish">	
+		<h4>User Stories (po polsku)</h4>
+		<p class="guidelines">User stories w języku polskim</p>
+		<p>Jako wzykły klient chce kupic karnet oraz zapisać się na zajęcia z aerobiku</p>
+	</article>
+
+	
+	<article id="user-stories-english">
+		<h4>User Stories (in english)</h4>
+		<p class="guidelines">User stories in english</p>
+		<p>As a regular customer I want to buy a subscription and enroll into aerobics class</p>
+	</article>
+
+	
+	<article id="use-case-diagram">
+		<h4>Diagram przypadków użycia</h4>
+		<p class ="uml">
+			@startuml
+			left to right direction
+
+			Customer -- (Get subscription)
+			Customer -- (Enroll into classes)
+			Customer -- (Use gym)
+            Customer -- (Obey the rules)
+
+			Employee -- (Add classes)
+			Employee -- (Update classes)
+			Employee -- (Delete classes)
+			Employee -- (Register new customer)
+            Employee -- (Report equipment malfunction)
+
+			Manager -- (Add new Employee)
+            Manager -- (Update Employee)
+            Manager -- (Delete Employee)
+
+			(Obey the rules) <.. (Charge penalty) : <<extend>>
+			(Get subscription) ..> (Use gym) : <<include>>
+			Manager --|> Employee
+
+			@enduml
+		</p>
+	</article>
+	
+	<article id="use-case-scenarios-polish">
+		<h4>Scenariusze przypadków użycia</h4>
+		<p class="guidelines">Scenariusze przypadków użycia w języku polskim. Do wygenerowania tabeli scenariusza należy wykorzystać generator dostępny <a href="http://kronos.tu.kielce.pl/uml/scenarios.html">tutaj</a>.</p>
+		
+		<table border="1">
+			<tbody><tr>
+				<th>Author name:</th>
+				<td style="width: 15cm;">
+					Adam
+				</td>
+			</tr>
+			<tr>
+				<th>Author surname:</th>
+				<td style="width: 15cm;">
+					Krechowicz
+				</td>
+			</tr>
+			<tr>
+				<th>Author group:</th>
+				<td style="width: 15cm;">
+					Group 1
+				</td>
+			</tr>
+			<tr>
+				<th>Subject:</th>
+				<td style="width: 15cm;">
+					System zarządzania biblioteką
+				</td>
+			</tr>
+			<tr>
+				<th>Use Case:</th>
+				<td style="width: 15cm;">
+					Dodaj książkę
+				</td>
+			</tr>
+			<tr>
+				<th>Language:</th>
+				<td style="width: 15cm;">
+					Polish
+				</td>
+			</tr>
+			<tr>
+				<th>Preconditions:</th>
+				<td style="width: 15cm;">
+					<ul>
+						<li>
+							Użytkownik musi być zalogowany do systemu
+						</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th>Postconditions:</th>
+				<td style="width: 15cm;">
+					<ul>
+						<li>
+							Dodano nową książkę
+						</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th>Actors:</th>
+				<td style="width: 15cm;">
+					<ul>
+						<li>
+							Pracownik
+						</li>
+						<li>
+							Kierownik
+						</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th>Main flow:</th>
+				<td style="width: 15cm;">
+					<ol>
+						<li>
+							Użytkownik wybiera opcję dodaj nową książkę
+						</li>
+						<li>
+							System wyświetla formularz dodania nowej książki
+						</li>
+						<li>
+							Użytkownik wypełnia formularz dodania nowej książki
+						</li>
+						<li>
+							Użytkownik wysyła formularz
+						</li>
+						<li>
+							System dokonuje walidacji formularza
+						</li>
+						<li>
+							System dodaje nową książkę
+						</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>Alternate flow:</th>
+				<td style="width: 15cm;">
+					<ul>
+						<li>
+							<span class="number">5</span>
+							<span class="condition">Książka o podanym tytule już istnieje. </span>
+							<span class="reaction-type">GOTO</span>
+							<span class="reaction-goto">2</span>
+						</li>
+						<li>
+							<span class="number">5</span>
+							<span class="condition">Nie wszystkie wymagane pola zostały wpisane</span>
+							<span class="reaction-type">GOTO</span>
+							<span class="reaction-goto">2</span>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody></table>
+
+		<table border="1">
+			<tbody><tr>
+				<th>Author name:</th>
+				<td style="width: 15cm;">
+					Adam
+				</td>
+			</tr>
+			<tr>
+				<th>Author surname:</th>
+				<td style="width: 15cm;">
+					Krechowicz
+				</td>
+			</tr>
+			<tr>
+				<th>Author group:</th>
+				<td style="width: 15cm;">
+					Group 1
+				</td>
+			</tr>
+			<tr>
+				<th>Subject:</th>
+				<td style="width: 15cm;">
+					System zarządzania biblioteką
+				</td>
+			</tr>
+			<tr>
+				<th>Use Case:</th>
+				<td style="width: 15cm;">
+					Dodaj książkę
+				</td>
+			</tr>
+			<tr>
+				<th>Language:</th>
+				<td style="width: 15cm;">
+					Polish
+				</td>
+			</tr>
+			<tr>
+				<th>Preconditions:</th>
+				<td style="width: 15cm;">
+					<ul>
+						<li>
+							Użytkownik musi być zalogowany do systemu
+						</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th>Postconditions:</th>
+				<td style="width: 15cm;">
+					<ul>
+						<li>
+							Dodano nową książkę
+						</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th>Actors:</th>
+				<td style="width: 15cm;">
+					<ul>
+						<li>
+							Pracownik
+						</li>
+						<li>
+							Kierownik
+						</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th>Main flow:</th>
+				<td style="width: 15cm;">
+					<ol>
+						<li>
+							Użytkownik wybiera opcję dodaj nową książkę
+						</li>
+						<li>
+							System wyświetla formularz dodania nowej książki
+						</li>
+						<li>
+							Użytkownik wypełnia formularz dodania nowej książki
+						</li>
+						<li>
+							Użytkownik wysyła formularz
+						</li>
+						<li>
+							System dokonuje walidacji formularza
+						</li>
+						<li>
+							System dodaje nową książkę
+						</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>Alternate flow:</th>
+				<td style="width: 15cm;">
+					<ul>
+						<li>
+							<span class="number">5</span>
+							<span class="condition">Książka o podanym tytule już istnieje. </span>
+							<span class="reaction-type">GOTO</span>
+							<span class="reaction-goto">2</span>
+						</li>
+						<li>
+							<span class="number">5</span>
+							<span class="condition">Nie wszystkie wymagane pola zostały wpisane</span>
+							<span class="reaction-type">GOTO</span>
+							<span class="reaction-goto">2</span>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody></table>
+	</article>
+
+	
+	<article id="use-case-scenarios-english">
+		<h4>Use case scenarios</h4>
+		<p class="guidelines">Use case scenarios in english</p>
+	</article>
+
+	
+	<article id="activity-diagrams">
+		<h4>Diagramy aktywności</h4>
+
+		<section>
+			<h5>Dodaj książkę</h5>
+			<p class="author">Adam Krechowicz</p>
+			<p class="uml">
+				@startuml
+
+				start
+				:Add new book;
+				repeat
+				repeat
+				:Show form;
+				:Filling form;
+				:Sending form;
+				:Form validation;
+				repeat while (Book exists?) is (yes)
+				->no;
+				repeat while (Form complete?) is (no)
+				->yes;
+				:Add book;
+				stop
+
+				@enduml
+			</p>
+		</section>
+		<section>
+			<h5>Dodaj książkę</h5>
+			<p class="author">Adam Krechowicz</p>
+			<p class="uml">
+				@startuml
+
+				start
+				:Add new book;
+				repeat
+				repeat
+				:Show form;
+				:Filling form;
+				:Sending form;
+				:Form validation;
+				repeat while (Book exists?) is (yes)
+				->no;
+				repeat while (Form complete?) is (no)
+				->yes;
+				:Add book;
+				stop
+
+				@enduml
+			</p>
+		</section>
+	</article>
+
+	
+	<article id="class-diagram">
+		<h4>Diagram klas</h4>
+		<p class="uml">
+			@startuml
+			skinparam classAttributeIconSize 0
+			class Book{
+			+title
+			+author
+
+			-validate()
+			+borrow()
+			+giveBack()
+			{static} findBooks()
+		}
+
+		abstract class User
+
+		User <|-- Reader
+		User <|-- Worker
+		Worker <|-- Manager
+
+		Reader ..> Book
+		Reader *-- ReadersCard
+
+		@enduml
+		</p>
+	</article>
+
+	
+	<article>
+		<h4>Wzorce projektowe</h4>
+		<section class="pattern">
+			<h5>Singleton</h5>
+			<p class="author">Adam Krechowicz</p>
+			<h6>Problem</h6>
+			<div class="pattern-problem">
+				<p class="guidelines">Opis problemu, jaki będzie rozwiązany za pomocą wzorca, który występuje w projekcie</p>
+			</div>
+			<h6>Rozwiązanie</h6>
+			<div class="pattern-description">
+				<p class="guidelines">Opis zaproponowanego rozwiązania wynikającego z charakterystyki wzorca. W tym punkcie należy zarówno opisać wzorzec zastosowany wzorzec projektowy jak równizeż umotywować dlaczego pasuje on do rozwiązania zadanego problemu</p>
+			</div>
+			<h6>Diagram klas</h6>
+			<p class="uml pattern-diagram">
+				@startuml
+				skinparam classAttributeIconSize 0
+
+				class Singleton{
+				{static} -instance
+
+				-Singleton()
+				{static} +getInstance()
+			}
+
+			Singleton ..> Singleton : << create >>
+
+			@enduml
+			</p>
+			<h6>Kod wzorca</h6>
+			<pre class="pattern-code"><code class="lang-java">
+class Singleton{
+
+	public void Test(){
+
+	}
+
+	public static void main(String args[]){
+
+	}
+}
+			</code></pre>
+			<h6>Kod testowy wzorca</h6>
+			<pre class="pattern-test-code"><code class="lang-java">
+class SingletonTest{
+
+	public void Test(){
+
+	}
+
+	@Test
+	public void testSingleton(){
+	}
+}
+
+			</code></pre>
+		</section>
+</article>
+
+	
+	<article id="sequence-diagrams">
+		<h4>Diagramy sekwencji</h4>
+		<section>
+			<h5>Nazwa diagramu</h5>
+		<p class="author">Adam Krechowicz</p>
+		<p class="uml">
+			@startuml
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: Another authentication Response
+@enduml
+		</p>
+	</section>
+	</article>
+
+</body>
+</html> 
