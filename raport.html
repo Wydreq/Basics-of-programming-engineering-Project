@@ -114,6 +114,7 @@
 			Manager -- (Add new Employee)
             Manager -- (Update Employee)
             Manager -- (Delete Employee)
+			Manager -- (Buy new equipment)
 
 			(Obey the rules) <.. (Charge penalty) : <<extend>>
 			(Get subscription) ..> (Use gym) : <<include>>
@@ -125,43 +126,37 @@
 	
 	<article id="use-case-scenarios-polish">
 		<h4>Scenariusze przypadków użycia</h4>
-		<p class="guidelines">Scenariusze przypadków użycia w języku polskim. Do wygenerowania tabeli scenariusza należy wykorzystać generator dostępny <a href="http://kronos.tu.kielce.pl/uml/scenarios.html">tutaj</a>.</p>
+		<p class="guidelines">Scenariusze przypadków użycia w języku polskim.</p>
 		
 		<table border="1">
 			<tbody><tr>
-				<th>Author name:</th>
+				<th>Autorzy:</th>
 				<td style="width: 15cm;">
-					Adam
+					Mateusz Gębka, Bartłomiej Wydrzycki, Karol Górnicki, Jakub Wojnowski
 				</td>
 			</tr>
 			<tr>
-				<th>Author surname:</th>
+				<th>Grupa:</th>
 				<td style="width: 15cm;">
-					Krechowicz
+					3ID12B
 				</td>
 			</tr>
 			<tr>
-				<th>Author group:</th>
+				<th>Temat:</th>
 				<td style="width: 15cm;">
-					Group 1
+					System zarządzania siłownią
 				</td>
 			</tr>
 			<tr>
-				<th>Subject:</th>
+				<th>Przypadek użycia:</th>
 				<td style="width: 15cm;">
-					System zarządzania biblioteką
+					Korzystanie z siłowni
 				</td>
 			</tr>
 			<tr>
-				<th>Use Case:</th>
+				<th>Język:</th>
 				<td style="width: 15cm;">
-					Dodaj książkę
-				</td>
-			</tr>
-			<tr>
-				<th>Language:</th>
-				<td style="width: 15cm;">
-					Polish
+					Polski
 				</td>
 			</tr>
 			<tr>
@@ -169,7 +164,7 @@
 				<td style="width: 15cm;">
 					<ul>
 						<li>
-							Użytkownik musi być zalogowany do systemu
+							Użytkownik musi mieć wykupioną subskrypcję
 						</li>
 					</ul>
 				</td>
@@ -179,7 +174,7 @@
 				<td style="width: 15cm;">
 					<ul>
 						<li>
-							Dodano nową książkę
+							Użytkownik może chodzić na siłownie
 						</li>
 					</ul>
 				</td>
@@ -189,10 +184,13 @@
 				<td style="width: 15cm;">
 					<ul>
 						<li>
+							Menadżer
+						</li>
+						<li>
 							Pracownik
 						</li>
 						<li>
-							Kierownik
+							Użytkownik
 						</li>
 					</ul>
 				</td>
@@ -202,13 +200,13 @@
 				<td style="width: 15cm;">
 					<ol>
 						<li>
-							Użytkownik wybiera opcję dodaj nową książkę
+							Użytkownik wybiera opcję kupna subskrypcji
 						</li>
 						<li>
-							System wyświetla formularz dodania nowej książki
+							System wyświetla formularz kupna  subskrypcji
 						</li>
 						<li>
-							Użytkownik wypełnia formularz dodania nowej książki
+							Użytkownik wypełnia formularz kupna subskrypcji
 						</li>
 						<li>
 							Użytkownik wysyła formularz
@@ -217,7 +215,7 @@
 							System dokonuje walidacji formularza
 						</li>
 						<li>
-							System dodaje nową książkę
+							System dodaje nową subskrypcję
 						</li>
 					</ol>
 				</td>
@@ -228,7 +226,7 @@
 					<ul>
 						<li>
 							<span class="number">5</span>
-							<span class="condition">Książka o podanym tytule już istnieje. </span>
+							<span class="condition">Użytkownik posiada już subskrypcję </span>
 							<span class="reaction-type">GOTO</span>
 							<span class="reaction-goto">2</span>
 						</li>
@@ -242,36 +240,37 @@
 				</td>
 			</tr>
 		</tbody></table>
+
+
+		<article id="use-case-scenarios-english">
+			<h4>Use case scenarios</h4>
+			<p class="guidelines">Use case scenarios in english</p>
+		</article>
+	
 
 		<table border="1">
 			<tbody><tr>
-				<th>Author name:</th>
+				<th>Authors:</th>
 				<td style="width: 15cm;">
-					Adam
+					Mateusz Gębka, Bartłomiej Wydrzycki, Karol Górnicki, Jakub Wojnowski
 				</td>
 			</tr>
 			<tr>
-				<th>Author surname:</th>
+				<th>Authors group:</th>
 				<td style="width: 15cm;">
-					Krechowicz
-				</td>
-			</tr>
-			<tr>
-				<th>Author group:</th>
-				<td style="width: 15cm;">
-					Group 1
+					3ID12B
 				</td>
 			</tr>
 			<tr>
 				<th>Subject:</th>
 				<td style="width: 15cm;">
-					System zarządzania biblioteką
+					Gym management system
 				</td>
 			</tr>
 			<tr>
 				<th>Use Case:</th>
 				<td style="width: 15cm;">
-					Dodaj książkę
+					Use gym
 				</td>
 			</tr>
 			<tr>
@@ -285,7 +284,7 @@
 				<td style="width: 15cm;">
 					<ul>
 						<li>
-							Użytkownik musi być zalogowany do systemu
+							User has to buy subscription
 						</li>
 					</ul>
 				</td>
@@ -295,7 +294,7 @@
 				<td style="width: 15cm;">
 					<ul>
 						<li>
-							Dodano nową książkę
+							User is able to use gym
 						</li>
 					</ul>
 				</td>
@@ -305,10 +304,13 @@
 				<td style="width: 15cm;">
 					<ul>
 						<li>
-							Pracownik
+							Manager
 						</li>
 						<li>
-							Kierownik
+							Worker
+						</li>
+						<li>
+							User
 						</li>
 					</ul>
 				</td>
@@ -318,13 +320,13 @@
 				<td style="width: 15cm;">
 					<ol>
 						<li>
-							Użytkownik wybiera opcję dodaj nową książkę
+							Użytkownik wybiera opcję kupna subskrypcji
 						</li>
 						<li>
-							System wyświetla formularz dodania nowej książki
+							System wyświetla formularz kupna  subskrypcji
 						</li>
 						<li>
-							Użytkownik wypełnia formularz dodania nowej książki
+							Użytkownik wypełnia formularz kupna subskrypcji
 						</li>
 						<li>
 							Użytkownik wysyła formularz
@@ -333,7 +335,7 @@
 							System dokonuje walidacji formularza
 						</li>
 						<li>
-							System dodaje nową książkę
+							System dodaje nową subskrypcję
 						</li>
 					</ol>
 				</td>
@@ -360,13 +362,6 @@
 		</tbody></table>
 	</article>
 
-	
-	<article id="use-case-scenarios-english">
-		<h4>Use case scenarios</h4>
-		<p class="guidelines">Use case scenarios in english</p>
-	</article>
-
-	
 	<article id="activity-diagrams">
 		<h4>Diagramy aktywności</h4>
 
