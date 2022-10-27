@@ -320,22 +320,22 @@
 				<td style="width: 15cm;">
 					<ol>
 						<li>
-							Użytkownik wybiera opcję kupna subskrypcji
+							User chooses an option to buy a subscription
 						</li>
 						<li>
-							System wyświetla formularz kupna  subskrypcji
+							System pops-up subscription form
 						</li>
 						<li>
-							Użytkownik wypełnia formularz kupna subskrypcji
+							User fills the form
 						</li>
 						<li>
-							Użytkownik wysyła formularz
+							User sends the form
 						</li>
 						<li>
-							System dokonuje walidacji formularza
+							System validates form
 						</li>
 						<li>
-							System dodaje nową subskrypcję
+							System adds a new subscription
 						</li>
 					</ol>
 				</td>
@@ -346,13 +346,13 @@
 					<ul>
 						<li>
 							<span class="number">5</span>
-							<span class="condition">Książka o podanym tytule już istnieje. </span>
+							<span class="condition">User has bought a subscription already</span>
 							<span class="reaction-type">GOTO</span>
 							<span class="reaction-goto">2</span>
 						</li>
 						<li>
 							<span class="number">5</span>
-							<span class="condition">Nie wszystkie wymagane pola zostały wpisane</span>
+							<span class="condition">Form filled wrong</span>
 							<span class="reaction-type">GOTO</span>
 							<span class="reaction-goto">2</span>
 						</li>
@@ -366,48 +366,46 @@
 		<h4>Diagramy aktywności</h4>
 
 		<section>
-			<h5>Dodaj książkę</h5>
-			<p class="author">Adam Krechowicz</p>
+			<h5>Kup subskrypcję</h5>
 			<p class="uml">
 				@startuml
 
 				start
-				:Add new book;
+				:Kup subskrypcję;
 				repeat
 				repeat
-				:Show form;
-				:Filling form;
-				:Sending form;
-				:Form validation;
-				repeat while (Book exists?) is (yes)
-				->no;
-				repeat while (Form complete?) is (no)
-				->yes;
-				:Add book;
+				:Pokaż formularz;
+				:Wypełnij formularz;
+				:Wyślij formularz;
+				:Walidacja formularza;
+				repeat while (Czy użytkownik posiada już subskrypcję?) is (tak)
+				->nie;
+				repeat while (Czy formularz został dobrze wypełniony?) is (nie)
+				->tak;
+				:Dodaj subskrypcję;
 				stop
 
 				@enduml
 			</p>
 		</section>
 		<section>
-			<h5>Dodaj książkę</h5>
-			<p class="author">Adam Krechowicz</p>
+			<h5>Buy subscription</h5>
 			<p class="uml">
 				@startuml
 
 				start
-				:Add new book;
+				:Buy subscription;
 				repeat
 				repeat
 				:Show form;
 				:Filling form;
 				:Sending form;
 				:Form validation;
-				repeat while (Book exists?) is (yes)
+				repeat while (User has subscription ?) is (yes)
 				->no;
 				repeat while (Form complete?) is (no)
 				->yes;
-				:Add book;
+				:Add subscription;
 				stop
 
 				@enduml
@@ -421,24 +419,24 @@
 		<p class="uml">
 			@startuml
 			skinparam classAttributeIconSize 0
-			class Book{
-			+title
-			+author
+			class Subscription{
+			+id
+			+owner
 
 			-validate()
-			+borrow()
-			+giveBack()
-			{static} findBooks()
+			+isPaid()
+			+resignation()
 		}
 
 		abstract class User
 
-		User <|-- Reader
+		User <|-- Customer
 		User <|-- Worker
 		Worker <|-- Manager
 
-		Reader ..> Book
-		Reader *-- ReadersCard
+		Customer ..> Subscription
+		Customer *-- AccessCard
+		Worker *-- AccessCard
 
 		@enduml
 		</p>
@@ -449,7 +447,6 @@
 		<h4>Wzorce projektowe</h4>
 		<section class="pattern">
 			<h5>Singleton</h5>
-			<p class="author">Adam Krechowicz</p>
 			<h6>Problem</h6>
 			<div class="pattern-problem">
 				<p class="guidelines">Opis problemu, jaki będzie rozwiązany za pomocą wzorca, który występuje w projekcie</p>
@@ -509,7 +506,6 @@ class SingletonTest{
 		<h4>Diagramy sekwencji</h4>
 		<section>
 			<h5>Nazwa diagramu</h5>
-		<p class="author">Adam Krechowicz</p>
 		<p class="uml">
 			@startuml
 Alice -> Bob: Authentication Request
