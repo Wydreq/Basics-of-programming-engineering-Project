@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 public class Login extends JFrame {
     void login(final JFrame frame) {
+        frame.getContentPane().removeAll();
         JLabel l1 = new JLabel("Login page");
         l1.setBounds(250,70,200,40);
         l1.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -14,7 +15,7 @@ public class Login extends JFrame {
         usernameInput.setBounds(150,200,300,40);
         JLabel l3 = new JLabel("Password");
         l3.setBounds(150,210,200,40);
-        JTextField passwordInput = new JTextField();
+        JPasswordField passwordInput = new JPasswordField();
         passwordInput.setBounds(150,260,300,40);
         JButton submitButton = new JButton("Log in");
         submitButton.setBounds(150,350,300,40 );
@@ -26,13 +27,33 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent ae) {
 
                 try {
+                    String password = new String(passwordInput.getPassword());
                     Class.forName("oracle.jdbc.driver.OracleDriver");
                     Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","sys");
-                    String sql = "SELECT * FROM USERS WHERE LOGIN='"+usernameInput.getText()+"' AND PASSWORD='"+passwordInput.getText()+"'";
+                    String sql = "SELECT * FROM USERS WHERE LOGIN='"+usernameInput.getText()+"' AND PASSWORD='"+password+"'";
                     PreparedStatement ps = conn.prepareStatement(sql);
                     ResultSet rs=ps.executeQuery();
                     if(rs.next()) {
-                        JOptionPane.showMessageDialog(null, "Login successfully!");
+                            String userID = rs.getString("USER_ID");
+                            String firstname = rs.getString("FIRSTNAME");
+                            String lastname = rs.getString("LASTNAME");
+                            String role = rs.getString("ROLE");
+                            String subscription = rs.getString("SUBSCRIPTION");
+                            String addressID = rs.getString("ADDRESS_ID");
+
+                        if(role.equals("Manager")) {
+                            System.out.println("MANAGER");
+                            ManagerPanel panel = new ManagerPanel();
+                            panel.managerPanel(frame, userID, firstname, lastname, role, subscription, addressID);
+                        }
+                        else if(role.equals("Worker")) {
+                            System.out.println("WORKER");
+
+                        }
+                        else if(role.equals("Customer")) {
+                            System.out.println("CUSTOMER");
+
+                        }
                     }
                     else {
                         JOptionPane.showMessageDialog(null, "Something went wrong :(");
