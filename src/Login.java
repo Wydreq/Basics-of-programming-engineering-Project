@@ -29,7 +29,7 @@ public class Login extends JFrame {
                 try {
                     String password = new String(passwordInput.getPassword());
                     Class.forName("oracle.jdbc.driver.OracleDriver");
-                    Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","sys");
+                    Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","sys as SYSDBA","2137");
                     String sql = "SELECT * FROM USERS WHERE LOGIN='"+usernameInput.getText()+"' AND PASSWORD='"+password+"'";
                     PreparedStatement ps = conn.prepareStatement(sql);
                     ResultSet rs=ps.executeQuery();

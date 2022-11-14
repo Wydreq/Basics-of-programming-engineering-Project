@@ -72,21 +72,16 @@ public class AddNewWorker {
                     return;
                 }
                 else {
-                    String query =  "INSERT INTO Address (ID, FirstName, LastName, Age)"
-                            + "VALUES ('1', 'Tom', 'Hanks', '61 ')";
-
                     try {
                         Class.forName("oracle.jdbc.driver.OracleDriver");
-                        Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","sys");
-                        String sql = "";
-                        PreparedStatement ps = conn.prepareStatement(sql);
-                        ResultSet rs=ps.executeQuery();
-                        if(rs.next()) {
-
-                        }
-                        else {
-                            JOptionPane.showMessageDialog(null, "Something went wrong :(");
-                        }
+                        Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","sys as SYSDBA","2137");
+                        Statement statement = conn.createStatement();
+                       
+                        statement.executeUpdate("INSERT INTO Address "
+                        + "VALUES (address_next.nextval, '"+streetInput.getText()+"', '"+cityInput.getText()+"', "+postCodeInput.getText()+")");
+                        
+                        statement.executeUpdate("INSERT INTO Users "
+                        + "VALUES (users_next.nextval, '"+loginInput.getText()+"', '"+passwordInput.getText()+"', '"+firstnameInput.getText()+"', '"+lastnameInput.getText()+"','Worker', 'NO', users_next.nextval)");
                     }catch(Exception ee) {System.out.println(ee);}
                 }
             }
