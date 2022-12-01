@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorkersSettings {
 
@@ -14,6 +16,20 @@ public class WorkersSettings {
         JButton backButton = new JButton("Back");
         backButton.setBounds(200,500,200,40 );
         addWorker.setBounds(200,200,200,40 );
+        JPanel panel = new JPanel(new BorderLayout());
+        List<String> myList = new ArrayList<>(10);
+        for (int index = 0; index < 20; index++) {
+           myList.add("List Item " + index);
+        }
+        final JList<String> list = new JList<String>(myList.toArray(new String[myList.size()]));
+        System.out.println();
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(list);
+        list.setLayoutOrientation(JList.VERTICAL);
+        panel.setBounds(200,300,350,100);
+        panel.setVisible(true);
+        scrollPane.setVisible(true);
+        panel.add(scrollPane); frame.add(panel);
         frame.add(backButton); frame.add(l1); frame.add(addWorker);
         frame.repaint();
 

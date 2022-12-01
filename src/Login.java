@@ -3,7 +3,7 @@ import java.awt.*;
 import java.sql.*;
 import java.awt.event.*;
 
-public class Login extends JFrame {
+public class Login extends JFrame implements KeyListener {
     void login(final JFrame frame) {
         frame.getContentPane().removeAll();
         JLabel l1 = new JLabel("Login page");
@@ -21,6 +21,8 @@ public class Login extends JFrame {
         submitButton.setBounds(150,350,300,40 );
         frame.add(l1); frame.add(l2); frame.add(l3); frame.add(usernameInput); frame.add(passwordInput); frame.add(submitButton);
         frame.repaint();
+
+       
 
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -62,5 +64,25 @@ public class Login extends JFrame {
             }
         });
 
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            System.out.println("ELO");
+        }
+        
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // TODO Auto-generated method stub
+        
     }
 }
