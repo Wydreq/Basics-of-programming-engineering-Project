@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.locks.Condition;
 
 public class ManagerPanel {
 
@@ -27,6 +28,13 @@ public class ManagerPanel {
             public void actionPerformed(ActionEvent e) {
                 WorkersSettings ws = new WorkersSettings();
                 ws.managerPanelWorkersSettings(frame, userID, firstname, lastname, role, subscription, addressID);
+            }
+        });
+        addEquipment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddEquipment ae = new AddEquipment();
+                ae.managerpaneladdEquipment(frame, subscription, lastname, addressID);
             }
         });
 

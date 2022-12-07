@@ -3,6 +3,7 @@ import java.awt.*;
 import java.sql.*;
 import java.awt.event.*;
 
+
 public class Login extends JFrame implements KeyListener {
     void login(final JFrame frame) {
         frame.getContentPane().removeAll();
@@ -31,7 +32,7 @@ public class Login extends JFrame implements KeyListener {
                 try {
                     String password = new String(passwordInput.getPassword());
                     Class.forName("oracle.jdbc.driver.OracleDriver");
-                    Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","sys");
+                    Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",Main.sql_login, Main.sql_password);
                     String sql = "SELECT * FROM USERS WHERE LOGIN='"+usernameInput.getText()+"' AND PASSWORD='"+password+"'";
                     PreparedStatement ps = conn.prepareStatement(sql);
                     ResultSet rs=ps.executeQuery();

@@ -74,7 +74,7 @@ public class AddNewCustomer {
                 else {
                     try {
                         Class.forName("oracle.jdbc.driver.OracleDriver");
-                        Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","sys");
+                        Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",Main.sql_login,Main.sql_password);
                         Statement statement = conn.createStatement();
                         System.out.println("JEDEN");
                         statement.executeUpdate("INSERT INTO Address "
