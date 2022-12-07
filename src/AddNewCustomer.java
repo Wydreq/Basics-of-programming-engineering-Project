@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 
-public class AddNewWorker {
+public class AddNewCustomer {
 
-    void addNewWorker(final JFrame frame, String userID, String firstname, String lastname, String role, String subscription, String addressID) {
+    void addNewCustomer(final JFrame frame, String userID, String firstname, String lastname, String role, String subscription, String addressID) {
         frame.getContentPane().removeAll();
 
         JLabel l1 = new JLabel("Workers settings", SwingConstants.CENTER);
@@ -76,12 +76,12 @@ public class AddNewWorker {
                         Class.forName("oracle.jdbc.driver.OracleDriver");
                         Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","sys");
                         Statement statement = conn.createStatement();
-                       System.out.println("JEDEN");
+                        System.out.println("JEDEN");
                         statement.executeUpdate("INSERT INTO Address "
-                        + "VALUES (address_next.nextval, '"+streetInput.getText()+"', '"+cityInput.getText()+"', "+postCodeInput.getText()+")");
+                                + "VALUES (address_next.nextval, '"+streetInput.getText()+"', '"+cityInput.getText()+"', "+postCodeInput.getText()+")");
                         System.out.println("DWA");
                         statement.executeUpdate("INSERT INTO Users "
-                        + "VALUES (users_next.nextval, '"+loginInput.getText()+"', '"+passwordInput.getText()+"', '"+firstnameInput.getText()+"', '"+lastnameInput.getText()+"','Worker', 'NO', users_next.nextval)");
+                                + "VALUES (users_next.nextval, '"+loginInput.getText()+"', '"+passwordInput.getText()+"', '"+firstnameInput.getText()+"', '"+lastnameInput.getText()+"','Customer', 'NO', users_next.nextval)");
                     }catch(Exception ee) {System.out.println(ee);}
                 }
             }
@@ -90,8 +90,8 @@ public class AddNewWorker {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                WorkersSettings ws = new WorkersSettings();
-                ws.managerPanelWorkersSettings(frame, userID, firstname, lastname, role, subscription, addressID);
+                CustomersSettings ws = new CustomersSettings();
+                ws.workersPanelCustomersSettings(frame, userID, firstname, lastname, role, subscription, addressID);
             }
         });
     }
