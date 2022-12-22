@@ -82,6 +82,8 @@ public class AddNewWorker {
                         System.out.println("DWA");
                         statement.executeUpdate("INSERT INTO Users "
                         + "VALUES (users_next.nextval, '"+loginInput.getText()+"', '"+passwordInput.getText()+"', '"+firstnameInput.getText()+"', '"+lastnameInput.getText()+"','Worker', 'NO', users_next.nextval)");
+                        WorkersSettings ws = new WorkersSettings();
+                        ws.managerPanelWorkersSettings(frame, userID, firstname, lastname, role, subscription, addressID);
                     }catch(Exception ee) {System.out.println(ee);}
                 }
             }

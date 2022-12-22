@@ -6,7 +6,7 @@ import java.sql.*;
 
 
 public class AddEquipment {
-    void managerpaneladdEquipment(final JFrame frame, String equipmentID, String name, String condition) {
+    void managerpaneladdEquipment(final JFrame frame, String userID, String firstname, String lastname, String role, String subscription, String addressID ) {
         frame.getContentPane().removeAll();
 
         JLabel l1 = new JLabel("Equipment Settings", SwingConstants.CENTER);
@@ -48,6 +48,8 @@ public class AddEquipment {
                         Statement statement = conn.createStatement();
                         statement.executeUpdate("INSERT INTO Equipment "
                                 + "VALUES (equipment_next.nextval, '"+nameInput.getText()+"', '"+conditionInput.getText()+"')");
+                        ManagerPanel panel = new ManagerPanel();
+                        panel.managerPanel(frame, userID, firstname, lastname, role, subscription, addressID);
                     }catch(Exception ee) {System.out.println(ee);}
                 }
             }
@@ -57,7 +59,7 @@ public class AddEquipment {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ManagerPanel mp = new ManagerPanel();
-                mp.managerPanel(frame, condition, name, name, equipmentID, name, condition);
+                mp.managerPanel(frame, userID, firstname, lastname, role, subscription, addressID);
             }
         });
     }

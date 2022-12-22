@@ -34,7 +34,7 @@ public class ManagerPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AddEquipment ae = new AddEquipment();
-                ae.managerpaneladdEquipment(frame, subscription, lastname, addressID);
+                ae.managerpaneladdEquipment(frame, userID, firstname, lastname, role, subscription, addressID);
             }
         });
 

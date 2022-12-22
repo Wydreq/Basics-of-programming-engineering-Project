@@ -82,6 +82,8 @@ public class AddNewCustomer {
                         System.out.println("DWA");
                         statement.executeUpdate("INSERT INTO Users "
                                 + "VALUES (users_next.nextval, '"+loginInput.getText()+"', '"+passwordInput.getText()+"', '"+firstnameInput.getText()+"', '"+lastnameInput.getText()+"','Customer', 'NO', users_next.nextval)");
+                                CustomersSettings ws = new CustomersSettings();
+                ws.workersPanelCustomersSettings(frame, userID, firstname, lastname, role, subscription, addressID);
                     }catch(Exception ee) {System.out.println(ee);}
                 }
             }

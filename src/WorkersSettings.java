@@ -1,8 +1,12 @@
 import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Console;
 import java.util.ArrayList;
+import java.sql.*;
 import java.util.List;
 
 public class WorkersSettings {
@@ -13,25 +17,44 @@ public class WorkersSettings {
         l1.setBounds(0,70,600,70);
         l1.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
         JButton addWorker = new JButton("Add Worker");
+        JButton fireWorker = new JButton("Manage workers");
         JButton backButton = new JButton("Back");
         backButton.setBounds(200,500,200,40 );
+        fireWorker.setBounds(200,250,200,40 );
         addWorker.setBounds(200,200,200,40 );
-        JPanel panel = new JPanel(new BorderLayout());
-        List<String> myList = new ArrayList<>(10);
-        for (int index = 0; index < 20; index++) {
-           myList.add("List Item " + index);
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system", "sys");
+            String query = "select USER_ID, FIRSTNAME, LASTNAME from USERS" + " WHERE ROLE='Worker'";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs=ps.executeQuery();
+            DefaultListModel<String> dlm = new DefaultListModel<String>();
+            int counter = 0;
+            JList list = new JList<>(dlm);
+            while (rs.next()) {
+                String user_id = rs.getString("USER_ID");
+                String userFirstname = rs.getString("FIRSTNAME");
+                String userLastname = rs.getString("LASTNAME");
+                String fullUser = user_id + " " + userLastname + " " + userFirstname;
+                dlm.add(counter, fullUser);
+                counter ++;
+                
+            }
+            JScrollPane listScrollPane = new JScrollPane(list);
+            listScrollPane.setBounds(200, 300, 200, 190);
+            frame.add(listScrollPane);
+            listScrollPane.addMouseListener(new MouseInputAdapter() {
+                
+            });
         }
-        final JList<String> list = new JList<String>(myList.toArray(new String[myList.size()]));
-        System.out.println();
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(list);
-        list.setLayoutOrientation(JList.VERTICAL);
-        panel.setBounds(200,300,350,100);
-        panel.setVisible(true);
-        scrollPane.setVisible(true);
-        panel.add(scrollPane); frame.add(panel);
+        catch(Exception e) {System.out.println(e);}
+
+        frame.add(fireWorker);
         frame.add(backButton); frame.add(l1); frame.add(addWorker);
         frame.repaint();
+
+        
 
         addWorker.addActionListener(new ActionListener() {
             @Override

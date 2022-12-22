@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 
 public class CustomerPanel {
@@ -27,11 +30,20 @@ public class CustomerPanel {
         deleteAccount.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int result = JOptionPane.showConfirmDialog(frame,"Sure? You want to dete account?", "!!!DELETING ACCOUNT!!!",
+                int result = JOptionPane.showConfirmDialog(frame,"Sure? You want to delete account?", "!!!DELETING ACCOUNT!!!",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
                 if(result == JOptionPane.YES_OPTION){
-                   System.out.println("YES");
+                    try {
+                        Class.forName("oracle.jdbc.driver.OracleDriver");
+                        Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",Main.sql_login,Main.sql_password);
+                        Statement statement = conn.createStatement();
+                        statement.executeUpdate("DELETE FROM Users " + "WHERE USER_ID = '"+userID+"'");
+                        statement.executeUpdate("DELETE FROM Address " + "WHERE ADDRESS_ID = '"+addressID+"'");
+                        JOptionPane.showMessageDialog(frame, "Your account has been deleted!");
+                        Login login = new Login();
+                        login.login(frame);
+                    }catch(Exception ee) {System.out.println(ee);}
                 }else if (result == JOptionPane.NO_OPTION){
                     System.out.println("NO");
                 }else {
