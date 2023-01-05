@@ -19,17 +19,22 @@ public class CustomersSettings {
         l1.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
         JButton addWorker = new JButton("Add Customer");
         JButton backButton = new JButton("Back");
+        JButton editUser = new JButton("Edit picked user");
+        JButton deleteUser = new JButton("Delete picked user");
+        editUser.setBounds(100, 250, 200, 40);
+        deleteUser.setBounds(310, 250, 200, 40);
         backButton.setBounds(200,500,200,40 );
         addWorker.setBounds(200,200,200,40 );
+        DefaultListModel<String> dlm = new DefaultListModel<String>();
+        int counter = 0;
+        JList list = new JList<>(dlm);
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system", "sys");
             String query = "select USER_ID, FIRSTNAME, LASTNAME from USERS" + " WHERE ROLE='Customer'";
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs=ps.executeQuery();
-            DefaultListModel<String> dlm = new DefaultListModel<String>();
-            int counter = 0;
-            JList list = new JList<>(dlm);
+           
             while (rs.next()) {
                 String user_id = rs.getString("USER_ID");
                 String userFirstname = rs.getString("FIRSTNAME");
@@ -39,14 +44,34 @@ public class CustomersSettings {
                 counter ++;
                 
             }
-            JScrollPane listScrollPane = new JScrollPane(list);
-            listScrollPane.setBounds(200, 300, 200, 190);
-            frame.add(listScrollPane);
+            // frame.add(listScrollPane);
             
         }
         catch(Exception e) {System.out.println(e);}
-        frame.add(backButton); frame.add(l1); frame.add(addWorker);
+        JScrollPane listScrollPane = new JScrollPane(list);
+            listScrollPane.setBounds(200, 300, 200, 190);
+        frame.add(backButton); frame.add(l1); frame.add(addWorker); frame.add(editUser); frame.add(deleteUser);
+        frame.add(listScrollPane);
         frame.repaint();
+        deleteUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String mystring = list.getSelectedValue().toString();
+                String stringToParts[] = mystring.split(" ");
+                String pickedUserID = stringToParts[0];
+
+                try {
+                    Class.forName("oracle.jdbc.driver.OracleDriver");
+                    Connection conn =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",Main.sql_login,Main.sql_password);
+                    Statement statement = conn.createStatement();
+                    statement.executeUpdate("DELETE FROM Users " + "WHERE USER_ID = '"+pickedUserID+"'");
+                    statement.executeUpdate("DELETE FROM Address " + "WHERE ADDRESS_ID = '"+pickedUserID+"'");
+                    JOptionPane.showMessageDialog(frame, "Choosen account has been deleted!");
+                    CustomersSettings cs = new CustomersSettings();
+                    cs.workersPanelCustomersSettings(frame, userID, firstname, lastname, role, subscription, addressID);
+                }catch(Exception ee) {System.out.println(ee);}
+            }
+        });
 
         addWorker.addActionListener(new ActionListener() {
             @Override

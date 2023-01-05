@@ -14,12 +14,21 @@ public class WorkerPanel {
         l1.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
         JButton logoutButton = new JButton("Log out");
         JButton customersSettings = new JButton("Manage customers");
-        JButton addEquipment = new JButton("Add new gym activity");
+        JButton addGymActivity = new JButton("Add new gym activity");
         customersSettings.setBounds(200,150,200,40 );
-        addEquipment.setBounds(200,200,200,40 );
+        addGymActivity.setBounds(200,200,200,40 );
         logoutButton.setBounds(200,450,200,40 );
-        frame.add(l1); frame.add(userLabel); frame.add(logoutButton);frame.add(addEquipment);frame.add(customersSettings);
+        frame.add(l1); frame.add(userLabel); frame.add(logoutButton);frame.add(addGymActivity);frame.add(customersSettings);
         frame.repaint();
+
+        
+        addGymActivity.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddGymActivity aga = new AddGymActivity();
+                aga.addNewGymActivity(frame, userID, firstname, lastname, role, subscription, addressID);
+            }
+        });
 
         customersSettings.addActionListener(new ActionListener() {
             @Override
