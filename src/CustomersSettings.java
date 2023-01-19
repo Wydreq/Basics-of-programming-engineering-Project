@@ -53,6 +53,18 @@ public class CustomersSettings {
         frame.add(backButton); frame.add(l1); frame.add(addWorker); frame.add(editUser); frame.add(deleteUser);
         frame.add(listScrollPane);
         frame.repaint();
+
+        editUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String mystring = list.getSelectedValue().toString();
+                String stringToParts[] = mystring.split(" ");
+                String pickedUserID = stringToParts[0];
+                UpdateUser uu = new UpdateUser();
+                uu.updateUser(frame, userID, firstname, lastname, role, subscription, addressID, pickedUserID, "CUSTOMERSETTINGS");
+            }
+        });
+
         deleteUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
