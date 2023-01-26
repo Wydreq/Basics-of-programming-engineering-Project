@@ -11,20 +11,20 @@ public class CustomerPanel {
     void customerPanel(final JFrame frame, String userID, String firstname, String lastname, String role, String subscription, String addressID) {
         frame.getContentPane().removeAll();
         JLabel l1 = new JLabel("Customer panel");
-        JLabel userLabel = new JLabel("User: " + firstname + " " + lastname);
+        JLabel userLabel = new JLabel("User: " + firstname + " " + lastname + "   SUBSCRIPTION: "+ subscription);
         userLabel.setBounds(10,10,300,40);
         userLabel.setFont(new Font("Arial", Font.PLAIN, 10));
         l1.setBounds(150,70,300,40);
         l1.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
         JButton logoutButton = new JButton("Log out");
-        JButton registerToGymActivities = new JButton("Register to gym activities");
-        JButton accountSettings = new JButton("Account settings");
+        JButton registerToGymActivities = new JButton("Buy subscription");
+        // JButton accountSettings = new JButton("Account settings");
         JButton deleteAccount = new JButton("Delete account");
         deleteAccount.setBounds(200,250,200,40);
         registerToGymActivities.setBounds(200,150,200,40 );
-        accountSettings.setBounds(200,200,200,40 );
+        // accountSettings.setBounds(200,200,200,40 );
         logoutButton.setBounds(200,450,200,40 );
-        frame.add(l1); frame.add(userLabel); frame.add(logoutButton);frame.add(accountSettings);frame.add(registerToGymActivities); frame.add(deleteAccount);
+        frame.add(l1); frame.add(userLabel); frame.add(logoutButton);frame.add(registerToGymActivities); frame.add(deleteAccount);
         frame.repaint();
 
         deleteAccount.addActionListener(new ActionListener() {
@@ -55,16 +55,17 @@ public class CustomerPanel {
         registerToGymActivities.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                BuySubscription bs = new BuySubscription();
+                bs.buy(frame, userID, firstname, lastname, role, subscription, addressID);
             }
         });
 
-        accountSettings.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        // accountSettings.addActionListener(new ActionListener() {
+        //     @Override
+        //     public void actionPerformed(ActionEvent e) {
 
-            }
-        });
+        //     }
+        // });
 
         logoutButton.addActionListener(new ActionListener() {
             @Override
