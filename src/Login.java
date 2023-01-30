@@ -5,6 +5,8 @@ import java.awt.event.*;
 
 
 public class Login extends JFrame implements KeyListener {
+    public Object userID;
+
     void login(final JFrame frame) {
         frame.getContentPane().removeAll();
         JLabel l1 = new JLabel("Login page");
