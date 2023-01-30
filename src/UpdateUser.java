@@ -106,6 +106,10 @@ public class UpdateUser {
                             CustomersSettings cs = new CustomersSettings();
                             cs.workersPanelCustomersSettings(frame, userID, firstname, lastname, role, subscription, addressID);
                         }
+                        if(nextFrame == "WORKERSSETTINGS") {
+                            WorkersSettings ws = new WorkersSettings();
+                            ws.managerPanelWorkersSettings(frame, userID, firstname, lastname, role, subscription, addressID);
+                        }
                         else {
                             WorkersSettings ws = new WorkersSettings();
                             ws.managerPanelWorkersSettings(frame, userID, firstname, lastname, role, subscription, addressID);

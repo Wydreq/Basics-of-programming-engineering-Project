@@ -17,10 +17,10 @@ public class WorkersSettings {
         l1.setBounds(0,70,600,70);
         l1.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
         JButton addWorker = new JButton("Add Worker");
-        JButton fireWorker = new JButton("Manage workers");
+        JButton editWorker = new JButton("Edit picked worker");
         JButton backButton = new JButton("Back");
         backButton.setBounds(200,500,200,40 );
-        fireWorker.setBounds(200,250,200,40 );
+        editWorker.setBounds(200,250,200,40 );
         addWorker.setBounds(200,200,200,40 );
 
         try {
@@ -47,15 +47,21 @@ public class WorkersSettings {
             listScrollPane.addMouseListener(new MouseInputAdapter() {
                 
             });
-        }
-        catch(Exception e) {System.out.println(e);}
 
-        frame.add(fireWorker);
+            frame.add(editWorker);
         frame.add(backButton); frame.add(l1); frame.add(addWorker);
         frame.repaint();
 
-        
-
+        editWorker.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String mystring = list.getSelectedValue().toString();
+                String stringToParts[] = mystring.split(" ");
+                String pickedUserID = stringToParts[0];
+                UpdateUser uu = new UpdateUser();
+                uu.updateUser(frame, userID, firstname, lastname, role, subscription, addressID, pickedUserID, "WORKERSSETTINGS");
+            }
+        });
         addWorker.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,5 +77,7 @@ public class WorkersSettings {
                 panel.managerPanel(frame, userID, firstname, lastname, role, subscription, addressID);
             }
         });
+        }
+        catch(Exception e) {System.out.println(e);}
     }
 }
