@@ -11,6 +11,13 @@ public class BuySubscription {
         frame.getContentPane().removeAll();
         //jedna linijka
 
+        //setLayout(null);
+        ImageIcon img = new ImageIcon("C:\\Users\\bartl\\Desktop\\Inzynieria\\Basics-of-programming-engineering-Project\\src\\img\\tlo.jpg");
+
+        JLabel background;
+        background = new JLabel("",img,JLabel.CENTER);
+        background.setBounds(0,0,600,600);
+
         JLabel l1 = new JLabel("Buy subscription", SwingConstants.CENTER);
         l1.setBounds(0,70,600,70);
         l1.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
@@ -38,7 +45,7 @@ public class BuySubscription {
         submitButton.setBounds(320,510,100,40 );
         frame.add(backButton); frame.add(submitButton); frame.add(l1); frame.add(loginLabel); frame.add(loginInput);
         frame.add(passwordInput); frame.add(passwordLabel); frame.add(firstnameLabel); frame.add(firstnameInput);
-        
+        frame.add(background);
         frame.repaint();
 
         submitButton.addActionListener(new ActionListener() {

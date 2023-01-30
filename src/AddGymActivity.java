@@ -14,6 +14,13 @@ public class AddGymActivity {
     void addNewGymActivity(final JFrame frame, String userID, String firstname, String lastname, String role, String subscription, String addressID) {
         frame.getContentPane().removeAll();
 
+        //setLayout(null);
+        ImageIcon img = new ImageIcon("C:\\Users\\bartl\\Desktop\\Inzynieria\\Basics-of-programming-engineering-Project\\src\\img\\tlo.jpg");
+
+        JLabel background;
+        background = new JLabel("",img,JLabel.CENTER);
+        background.setBounds(0,0,600,600);
+
         JLabel l1 = new JLabel("Workers settings", SwingConstants.CENTER);
         l1.setBounds(0,70,600,70);
         l1.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
@@ -44,6 +51,7 @@ public class AddGymActivity {
         frame.add(backButton); frame.add(submitButton); frame.add(l1); frame.add(nameLabel); frame.add(nameInput);
         frame.add(dateInput); frame.add(dateLabel);
         frame.add(instructorNameLabel); frame.add(instructorNameInput);
+        frame.add(background);
         frame.repaint();
 
         submitButton.addActionListener(new ActionListener() {

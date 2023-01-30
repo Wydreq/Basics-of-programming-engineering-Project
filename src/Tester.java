@@ -26,7 +26,7 @@ public class Tester {
 public void testDBConnection() {
     try {
         Class.forName("oracle.jdbc.driver.OracleDriver");
-        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "sys AS SYSDBA", "2137");
+        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "sys");
         String sql = "SELECT * FROM USERS WHERE LOGIN='wydra' AND PASSWORD='zaq!@WSX'";
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();

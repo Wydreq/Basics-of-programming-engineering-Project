@@ -10,6 +10,12 @@ import java.sql.Statement;
 public class CustomerPanel {
     void customerPanel(final JFrame frame, String userID, String firstname, String lastname, String role, String subscription, String addressID) {
         frame.getContentPane().removeAll();
+        //setLayout(null);
+        ImageIcon img = new ImageIcon("C:\\Users\\bartl\\Desktop\\Inzynieria\\Basics-of-programming-engineering-Project\\src\\img\\tlo.jpg");
+
+        JLabel background;
+        background = new JLabel("",img,JLabel.CENTER);
+        background.setBounds(0,0,600,600);
         JLabel l1 = new JLabel("Customer panel");
         JLabel userLabel = new JLabel("User: " + firstname + " " + lastname + "   SUBSCRIPTION: "+ subscription);
         userLabel.setBounds(10,10,300,40);
@@ -25,6 +31,7 @@ public class CustomerPanel {
         // accountSettings.setBounds(200,200,200,40 );
         logoutButton.setBounds(200,450,200,40 );
         frame.add(l1); frame.add(userLabel); frame.add(logoutButton);frame.add(registerToGymActivities); frame.add(deleteAccount);
+        frame.add(background);
         frame.repaint();
 
         deleteAccount.addActionListener(new ActionListener() {

@@ -2,13 +2,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
 import java.awt.event.*;
-
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.IOException;
 
 public class Login extends JFrame implements KeyListener {
     public Object userID;
 
     void login(final JFrame frame) {
         frame.getContentPane().removeAll();
+        setLayout(null);
+        ImageIcon img = new ImageIcon("C:\\Users\\bartl\\Desktop\\Inzynieria\\Basics-of-programming-engineering-Project\\src\\img\\tlo.jpg");
+
+        JLabel background;
+        background = new JLabel("",img,JLabel.CENTER);
+        background.setBounds(0,0,600,600);
+       
         JLabel l1 = new JLabel("Login page");
         l1.setBounds(250,70,200,40);
         l1.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -23,6 +33,7 @@ public class Login extends JFrame implements KeyListener {
         JButton submitButton = new JButton("Log in");
         submitButton.setBounds(150,350,300,40 );
         frame.add(l1); frame.add(l2); frame.add(l3); frame.add(usernameInput); frame.add(passwordInput); frame.add(submitButton);
+        frame.add(background);
         frame.repaint();
 
        
